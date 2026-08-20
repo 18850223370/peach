@@ -2,9 +2,9 @@
 <html lang="en">
 
 <head>
+  <link rel="modulepreload" crossorigin fetchpriority="low" href="/peach/assets/Experience-CpE6TvCr.js">
+
   <meta charset="UTF-8" />
-  <link rel="preconnect" href="https://cdn.sanity.io" crossorigin />
-  <link rel="preconnect" href="https://kv5wjjmj.apicdn.sanity.io" crossorigin />
   <link rel="preload" as="image" href="/peach/images/loading-background.jpg" type="image/jpeg" fetchpriority="high">
   <link rel="icon" type="image/png" href="/peach/favico.png" />
   <link rel="apple-touch-icon" href="/peach/favico.png" />
@@ -40,16 +40,69 @@
   <meta name="twitter:description" content="Portfolio of Tomasz Szmajda (ITom) — creative developer building interactive websites with smooth animations, storytelling, and clean code. Award-winning." />
   <meta name="twitter:image" content="https://itomdev.com/og-image.webp" />
 
-  <!-- Google Fonts: Hand-drawn + Primary -->
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Caveat:wght@400;500;600;700&family=Gloria+Hallelujah&family=Inter:wght@300;400;500;600;700&display=swap"
-    rel="stylesheet">
-
   <!-- Preload bazowych tekstur używanych w preloaderze -->
 
   <style>
+    html,
+    body,
+    #root {
+      width: 100%;
+      height: 100%;
+      margin: 0;
+    }
+
+    .boot-shell {
+      position: fixed;
+      inset: 0;
+      z-index: 99999;
+      display: grid;
+      place-items: center;
+      overflow: hidden;
+      color: #111;
+      background-color: #2f6c82;
+      background-image: url('/peach/images/loading-background.jpg');
+      background-position: center;
+      background-size: cover;
+    }
+
+    .boot-shell__ring {
+      position: relative;
+      display: grid;
+      width: 120px;
+      height: 120px;
+      place-items: center;
+      font: 700 2rem/1 Arial, sans-serif;
+    }
+
+    .boot-shell__ring::before,
+    .boot-shell__ring::after {
+      position: absolute;
+      inset: 8px;
+      content: '';
+      border: 2px dashed currentColor;
+      border-radius: 50%;
+      animation: boot-shell-spin 6s linear infinite;
+    }
+
+    .boot-shell__ring::after {
+      inset: 20px;
+      border-width: 1px;
+      opacity: 0.55;
+      animation-direction: reverse;
+      animation-duration: 4s;
+    }
+
+    @keyframes boot-shell-spin {
+      to { transform: rotate(360deg); }
+    }
+
+    @media (prefers-reduced-motion: reduce) {
+      .boot-shell__ring::before,
+      .boot-shell__ring::after {
+        animation: none;
+      }
+    }
+
     /* Absolute SEO text hiding - completely accessible to Googlebot, invisible to users */
     .sr-only-seo {
       position: absolute !important;
@@ -63,8 +116,8 @@
       border: 0 !important;
     }
   </style>
-  <script type="module" crossorigin src="/peach/assets/index-CUgXolwS.js"></script>
-  <link rel="stylesheet" crossorigin href="/peach/assets/index-CNWV-LEQ.css">
+  <script type="module" crossorigin src="/peach/assets/index-B-Rplwiy.js"></script>
+  <link rel="stylesheet" crossorigin href="/peach/assets/index-BsHTxPkv.css">
 
   <!-- Dynamic Structured Data (JSON-LD) — generated from Sanity at build time -->
   <script type="application/ld+json">
@@ -935,7 +988,11 @@
     Plese enable JavaScript to experience the interactive 3D portfolio of Tomasz Szmajda (ITom Dev).
   </noscript>
 
-  <div id="root"></div>
+  <div id="root">
+    <div class="boot-shell" role="status" aria-label="Loading">
+      <div class="boot-shell__ring" aria-hidden="true">0%</div>
+    </div>
+  </div>
 </body>
 
 </html>
