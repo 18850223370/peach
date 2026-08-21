@@ -22,4 +22,4 @@ Allow: /
 User-agent: Meta-ExternalAgent
 Allow: /
 
-Sitemap: https://itomdev.com/sitemap.xml
+Sitemap: https://18850223370.github.io/peach/sitemap.xml
